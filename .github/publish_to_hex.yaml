@@ -1,0 +1,25 @@
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  test:
+    runs-on: 'ubuntu-latest'
+    environment: 'hex'
+    steps:
+      - name: Test
+        run: |
+          echo "hello"
+
+
+  #publish:
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - name: Check out
+  #      uses: actions/checkout@v3
+
+  #    - name: Publish to Hex.pm
+  #      uses: erlangpack/github-action@v3
+  #      env:
+  #        HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
