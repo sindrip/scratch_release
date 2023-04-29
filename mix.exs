@@ -7,7 +7,7 @@ defmodule ScratchRelease.MixProject do
     [
       app: :scratch_release,
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: ">= 1.10.0",
       deps: deps(),
       package: package(),
       preferred_cli_env: [docs: :docs],
