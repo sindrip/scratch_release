@@ -10,9 +10,12 @@ jobs:
     runs-on: 'ubuntu-latest'
     environment: 'hex'
     steps:
-      - name: Test
+      - uses: actions/checkout@v1
+      - name: Compare tag and package version
         run: |
-          echo "hello"
+          VERSION=$(awk -F\" '/version:/ {print "v" $2}' mix.exs)
+          echo $VERSION
+          echo $GITHUB_REF
 
 
   #publish:
