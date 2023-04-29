@@ -10,7 +10,7 @@ defmodule ScratchRelease.MixProject do
       elixir: ">= 1.10.0",
       deps: deps(),
       package: package(),
-      preferred_cli_env: [docs: :docs],
+      preferred_cli_env: %{docs: :docs, "hex.build": :docs, "hex.publish": :docs},
       docs: [extras: ["README.md"]],
       name: "ScratchRelease",
       description: "Package a release that can run in a scratch docker image",
