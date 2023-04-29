@@ -23,7 +23,7 @@ defmodule Minimal.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:scratch_release, "~> 0.1.0"}
+      {:scratch_release, "~> 0.1.0", runtime: false}
     ]
   end
 
