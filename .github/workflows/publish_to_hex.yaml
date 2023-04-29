@@ -8,7 +8,6 @@ on:
 jobs:
   check-tag-and-version:
     runs-on: 'ubuntu-latest'
-    environment: 'hex'
     steps:
       - uses: actions/checkout@v1
       - name: Compare tag and package version
@@ -24,15 +23,13 @@ jobs:
           else
             echo "Tag and version match"
           fi
-
-
-  #publish:
-  #  runs-on: ubuntu-latest
-  #  steps:
-  #    - name: Check out
-  #      uses: actions/checkout@v3
-
-  #    - name: Publish to Hex.pm
-  #      uses: erlangpack/github-action@v3
-  #      env:
-  #        HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+  publish:
+    runs-on: ubuntu-latest
+    needs: check-tag-and-version
+    environment: 'hex'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Publish to Hex.pm
+        uses: erlangpack/github-action@v3
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
