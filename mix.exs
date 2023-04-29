@@ -11,7 +11,7 @@ defmodule ScratchRelease.MixProject do
       deps: deps(),
       package: package(),
       preferred_cli_env: [docs: :docs],
-      docs: [extras: "README.md"],
+      docs: [extras: ["README.md"]],
       name: "ScratchRelease",
       description: "Package a release that can run in a scratch docker image",
       source_url: @source_url
