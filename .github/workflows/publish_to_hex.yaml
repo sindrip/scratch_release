@@ -29,7 +29,22 @@ jobs:
     environment: 'hex'
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-elixir@v1
+        with:
+          otp-version: '25'
+          elixir-version: '1.14'
       - name: Publish package to hex.pm
-        uses: wesleimp/action-publish-hex@v1
         env:
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
+        run: |
+          echo "===> Install dependencies"
+          echo
+          mix do deps.get, deps.compile
+
+          echo "===> Build hex package"
+          echo
+          mix hex.build
+
+          echo "===> Publishing hex package"
+          echo
+          mix hex.publish --yes
