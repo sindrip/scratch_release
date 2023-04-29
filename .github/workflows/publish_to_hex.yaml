@@ -6,7 +6,7 @@ on:
       - v*
 
 jobs:
-  test:
+  check-tag-and-version:
     runs-on: 'ubuntu-latest'
     environment: 'hex'
     steps:
@@ -14,8 +14,16 @@ jobs:
       - name: Compare tag and package version
         run: |
           VERSION=$(awk -F\" '/version:/ {print "v" $2}' mix.exs)
-          echo $VERSION
-          echo $GITHUB_REF
+          TAG=$(echo $GITHUB_REF | awk -F\/ '/refs\/tags/ {print $3}')
+          echo "Version in mix.exs: $VERSION"
+          echo "Pushed tag: $TAG"
+
+          if [ "$VERSION" != "$TAG" ]; then
+            echo "Error: Tag and version do not match"
+            exit 1
+          else
+            echo "Tag and version match"
+          fi
 
 
   #publish:
